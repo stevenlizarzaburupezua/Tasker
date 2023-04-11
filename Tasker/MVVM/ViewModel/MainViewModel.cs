@@ -12,6 +12,8 @@ namespace Tasker.MVVM.ViewModel
     {
         public ObservableCollection<Category> Categories { get; set; }
 
+        public ObservableCollection<MyTask> Tasks { get; set; }
+
         public MainViewModel()
         {
             FillData();
@@ -40,6 +42,70 @@ namespace Tasker.MVVM.ViewModel
                     Color = "#14df80"
                 },
             };
+
+            Tasks = new ObservableCollection<MyTask>
+            {
+                new MyTask
+                {
+                    TaskName = "Upload Exercise Files",
+                    Completed = false,
+                    CategoryId = 1
+                },
+                new MyTask
+                {
+                    TaskName = "Plan Next Course",
+                    Completed = false,
+                    CategoryId = 1
+                },
+                new MyTask
+                {
+                    TaskName = "Upload new ASP.NET video on Youtube",
+                    Completed = false,
+                    CategoryId = 2
+                },
+
+                new MyTask
+                {
+                    TaskName = "Fix Settings.cs class of the project",
+                    Completed = false,
+                    CategoryId = 2
+                },
+
+            };
+
+            UpdateData();
+
+        }
+
+        public void UpdateData()
+        {
+            foreach (var item in Categories)
+            {
+                var tasks = from t in Tasks
+                            where t.CategoryId == item.Id
+                            select t;
+
+                var completed = from t in tasks
+                                where t.Completed == true
+                                select t;
+
+                var notCompleted = from t in tasks
+                                   where t.Completed == false
+                                   select t;
+
+                item.PendingTasks = notCompleted.Count();
+                item.Percentage = (float)completed.Count() / (float)tasks.Count();
+
+            }
+
+            foreach (var t in Tasks)
+            {
+                var catColor = (from c in Categories
+                                where c.Id == t.CategoryId
+                                select c.Color).FirstOrDefault();
+                t.TaskName = catColor;
+            }
+
         }
     }
 }
