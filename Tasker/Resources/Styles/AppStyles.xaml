@@ -44,4 +44,29 @@
         <Setter Property="Shadow" Value="{StaticResource shadow}"></Setter>
     </Style>
 
+    <Style x:Key="Task" TargetType="Entry">
+        <Setter Property="FontSize" Value="Large"></Setter>
+        <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+        <Setter Property="PlaceholderColor" Value="{StaticResource LightBlue}"></Setter>
+        <Setter Property="VerticalOptions" Value="Center"></Setter>
+    </Style>
+
+    <EllipseGeometry
+        x:Key="circle"
+        Center="50,50"
+        RadiusX="30"
+        RadiusY="30">
+        
+    </EllipseGeometry>
+
+    <Style x:Key="CircularBotton" TargetType="Button">
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="Large"></Setter>
+        <Setter Property="HeightRequest" Value="100"></Setter>
+        <Setter Property="WidthRequest" Value="100"></Setter>
+        <Setter Property="VerticalOptions" Value="End"></Setter>
+        <Setter Property="HorizontalOptions" Value="End"></Setter>
+        <Setter Property="Clip" Value="{StaticResource circle}"></Setter>
+    </Style>
+
 </ResourceDictionary>
