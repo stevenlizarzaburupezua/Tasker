@@ -20,5 +20,7 @@ namespace Tasker.MVVM.Models
 
         public float Percentage { get; set; }
 
+        public bool IsSelected { get; set; }
+
     }
 }
